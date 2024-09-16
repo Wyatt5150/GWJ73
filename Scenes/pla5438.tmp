@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://1ejl0k88s3yi"]
+
+[ext_resource type="SpriteFrames" uid="uid://k3nv78gqdjcb" path="res://Resources/Player.tres" id="1_foiq6"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_irmx1"]
+[ext_resource type="PackedScene" uid="uid://bfk6fuljfk6dq" path="res://Scenes/Controllers/player_controller.tscn" id="3_by7uy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxfs4"]
+size = Vector2(16, 56)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_mask = 3
+script = ExtResource("1_irmx1")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+sprite_frames = ExtResource("1_foiq6")
+animation = &"Moving"
+frame_progress = 0.615155
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_lxfs4")
+
+[node name="PlayerController" parent="." instance=ExtResource("3_by7uy")]

@@ -1,0 +1,55 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cgj4rso7s6ry5"]
+
+[ext_resource type="FontFile" uid="uid://04ha3bjpjohy" path="res://NotMine/grim-reaper-font/GrimReaper-jEBRO.ttf" id="1_31l5w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cykau"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2mpm"]
+bg_color = Color(0.411765, 0.411765, 0.411765, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_coorp"]
+bg_color = Color(0.411765, 0.411765, 0.411765, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7csad"]
+bg_color = Color(0.411765, 0.411765, 0.411765, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11psn"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[resource]
+default_font = ExtResource("1_31l5w")
+default_font_size = 32
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.823529, 0.12549, 0.211765, 0.501961)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_cykau")
+Button/styles/hover = SubResource("StyleBoxFlat_b2mpm")
+Button/styles/normal = SubResource("StyleBoxFlat_coorp")
+Button/styles/pressed = SubResource("StyleBoxFlat_7csad")
+HBoxContainer/constants/separation = 0
+Label/colors/font_color = Color(0, 0, 0, 1)
+Panel/styles/panel = SubResource("StyleBoxFlat_11psn")
+VBoxContainer/constants/separation = 0

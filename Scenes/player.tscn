@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://1ejl0k88s3yi"]
+
+[ext_resource type="SpriteFrames" uid="uid://k3nv78gqdjcb" path="res://Resources/Player.tres" id="1_foiq6"]
+[ext_resource type="Script" path="res://Scripts/controllable.gd" id="1_irmx1"]
+[ext_resource type="PackedScene" uid="uid://bjye71sql32pt" path="res://Scenes/InheritanceJail/Components/horizontal_movement_component.tscn" id="3_24iuk"]
+[ext_resource type="PackedScene" uid="uid://kmw082pqte8e" path="res://Scenes/InheritanceJail/Components/fall_through_component.tscn" id="4_i7mpj"]
+[ext_resource type="PackedScene" uid="uid://wfgkonfk5hwb" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="4_ud6w7"]
+[ext_resource type="PackedScene" uid="uid://bsvr5svr0gewx" path="res://Scenes/InheritanceJail/Components/gravity_component.tscn" id="5_dtfhu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eedgu"]
+radius = 8.0
+height = 56.0
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 3
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_irmx1")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+sprite_frames = ExtResource("1_foiq6")
+animation = &"Moving"
+frame_progress = 0.615155
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -28)
+shape = SubResource("CapsuleShape2D_eedgu")
+
+[node name="FallThroughComponent" parent="." instance=ExtResource("4_i7mpj")]
+
+[node name="GravityComponent" parent="." instance=ExtResource("5_dtfhu")]
+action_name = "Gravity"
+
+[node name="HorizontalMovementComponent" parent="." instance=ExtResource("3_24iuk")]
+
+[node name="JumpComponent" parent="." instance=ExtResource("4_ud6w7")]

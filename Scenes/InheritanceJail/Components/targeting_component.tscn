@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjnvr4cb8wx41"]
+
+[ext_resource type="Script" path="res://Scenes/InheritanceJail/Components/Scripts/targeting_component.gd" id="1_4vexg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rb5nk"]
+radius = 50.0
+
+[node name="TargetingComponent" type="Node2D"]
+script = ExtResource("1_4vexg")
+action_name = "Target"
+
+[node name="TargetingArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetingArea"]
+shape = SubResource("CircleShape2D_rb5nk")

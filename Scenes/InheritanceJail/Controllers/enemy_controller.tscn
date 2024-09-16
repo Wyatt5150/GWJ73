@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://divbc678so3o4"]
+
+[ext_resource type="Script" path="res://Scenes/InheritanceJail/Controllers/Scripts/enemy_controller.gd" id="1_2h2cu"]
+
+[node name="EnemyController" type="Node"]
+script = ExtResource("1_2h2cu")
+x_offset = 20.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="UpdateTrackingPosition"]

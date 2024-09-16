@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb2ohd1ijt6cc"]
+
+[ext_resource type="Theme" uid="uid://cgj4rso7s6ry5" path="res://Resources/MainTheme.tres" id="2_iykfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6eaa"]
+size = Vector2(128, 128)
+
+[node name="Vault" type="StaticBody2D" groups=["Tower"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w6eaa")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SoulCounter" type="Label" parent="Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_iykfj")
+text = "Souls:
+0"
+horizontal_alignment = 1
+vertical_alignment = 1

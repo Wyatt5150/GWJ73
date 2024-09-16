@@ -1,0 +1,209 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf6albcugul1u"]
+
+[ext_resource type="Theme" uid="uid://cgj4rso7s6ry5" path="res://Resources/MainTheme.tres" id="1_vnypr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46gs0"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 16
+border_width_top = 8
+border_width_right = 16
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vnypr")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.411765, 0.411765, 0.411765, 1)
+
+[node name="Screen" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopSection" type="HBoxContainer" parent="Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="ItemsBox" type="Panel" parent="Screen/TopSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ShopItems" type="VBoxContainer" parent="Screen/TopSection/ItemsBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemButton" type="Button" parent="Screen/TopSection/ItemsBox/ShopItems"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemName" type="Label" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton/HBoxContainer"]
+layout_mode = 2
+text = "Spell Sword"
+
+[node name="ItemCost" type="Label" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "20 Souls"
+
+[node name="ItemButton2" type="Button" parent="Screen/TopSection/ItemsBox/ShopItems"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemName" type="Label" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton2/HBoxContainer"]
+layout_mode = 2
+text = "Spell Sword"
+
+[node name="ItemCost" type="Label" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "20 Souls"
+
+[node name="ItemButton3" type="Button" parent="Screen/TopSection/ItemsBox/ShopItems"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemName" type="Label" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton3/HBoxContainer"]
+layout_mode = 2
+text = "Spell Sword"
+
+[node name="ItemCost" type="Label" parent="Screen/TopSection/ItemsBox/ShopItems/ItemButton3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "20 Souls"
+
+[node name="ColorRect" type="ColorRect" parent="Screen/TopSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.411765, 0.411765, 0.411765, 1)
+
+[node name="Section2" type="HBoxContainer" parent="Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="Panel" parent="Screen/Section2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_46gs0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Section2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="Screen/Section2/ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Spell Sword"
+vertical_alignment = 1
+clip_text = true
+
+[node name="CurrentLabel" type="Label" parent="Screen/Section2/ColorRect/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "You Have: Level 0 "
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+
+[node name="Buy" type="Button" parent="Screen/Section2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BUY!!!"
+
+[node name="Exit" type="Button" parent="Screen/Section2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit Shop"
+
+[node name="TextArea" type="Panel" parent="Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="TextLabel" type="Label" parent="Screen/TextArea"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "S. W. O. R. D. Fires a piercing sword in a straight line.
+Base Damage: 5
+Element: None
+Pierce: 3"
