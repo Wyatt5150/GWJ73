@@ -52,14 +52,14 @@ visible = false
 [node name="Shop" parent="CanvasLayer" instance=ExtResource("5_nn84y")]
 
 [node name="Player" parent="." instance=ExtResource("6_v3qt6")]
-position = Vector2(224, 352)
+position = Vector2(280, 568)
 floor_stop_on_slope = true
 floor_snap_length = 8.0
 
 [node name="Cameras" type="Node2D" parent="."]
 
 [node name="PhantomCamera2D" type="Node2D" parent="Cameras" node_paths=PackedStringArray("follow_target")]
-position = Vector2(224, 332)
+position = Vector2(280, 488)
 script = ExtResource("7_dcaov")
 follow_mode = 5
 follow_target = NodePath("../../Player")
@@ -77,7 +77,7 @@ shape = SubResource("RectangleShape2D_8he6u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(224, 332)
+position = Vector2(280, 488)
 limit_left = -2008
 limit_top = -264
 limit_right = 2592
@@ -90,7 +90,7 @@ script = ExtResource("9_tsrtx")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Spawner" parent="Enemies" instance=ExtResource("10_3gmlg")]
-position = Vector2(-104, 388)
+position = Vector2(-216, 608)
 spawns = Array[PackedScene]([ExtResource("11_b4hsf")])
 
 [node name="Spawner2" parent="Enemies" instance=ExtResource("10_3gmlg")]
@@ -106,5 +106,5 @@ position = Vector2(-1153, 316)
 spawns = Array[PackedScene]([ExtResource("11_b4hsf")])
 
 [node name="Spawner5" parent="Enemies" instance=ExtResource("10_3gmlg")]
-position = Vector2(-566, 454)
+position = Vector2(-584, 760)
 spawns = Array[PackedScene]([ExtResource("11_b4hsf")])
