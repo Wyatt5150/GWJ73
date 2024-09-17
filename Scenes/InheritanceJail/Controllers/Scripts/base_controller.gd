@@ -15,14 +15,15 @@ class_name BaseController
 	get():
 		return parent
 
+@warning_ignore("unused_signal")
 signal fallthrough(disable : bool)
+@warning_ignore("unused_signal")
 signal change_direction(direction : float)
+@warning_ignore("unused_signal")
 signal jump()
-signal override_parent(node : Node2D)
 
 func _ready():
 	parent = parent_override
-	override_parent.emit(parent)
 	ready()
 
 func ready():

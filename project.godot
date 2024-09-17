@@ -78,6 +78,14 @@ Dash={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Impassable"
+2d_physics/layer_2="Fallthrough"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Tower"
+2d_physics/layer_5="Enemy"
+
 [physics]
 
 2d/default_gravity=2000.0

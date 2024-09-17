@@ -1,6 +1,7 @@
 extends BaseController
 class_name EnemyController
 
+@export var targeting_node : TargetingComponent
 @export var tracking_update_interval : float = 0.5
 @export var stutter : float = 50.0
 
@@ -8,15 +9,14 @@ class_name EnemyController
 @export var y_offset : float = 30
 
 var tracking_update_stutter : float = randf_range(0.0, 0.20)
+var tracking : Node2D
 var target : Vector2
-
-
 
 func ready():
 	$Timer.wait_time = tracking_update_interval + tracking_update_stutter
-	#$Timer.start()
+	$Timer.start()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not target:
 		return
 	
@@ -37,11 +37,12 @@ func _physics_process(delta: float) -> void:
 	
 	parent.move_and_slide()
 
-#func UpdateTrackingPosition():
-	##if !is_instance_valid(parent.tracking):
-		##Do_Action("Target", [])
-		##target = parent.global_position - Vector2(0, 50)
-		##return
-	#
-	#target = parent.tracking.global_position
-	#target.x += randf_range(-stutter, stutter)
+func UpdateTrackingPosition():
+	if !is_instance_valid(tracking):
+		tracking = targeting_node.FindTarget()
+		if !is_instance_valid(tracking):
+			target = parent.global_position - Vector2(0, 50)
+			return
+	
+	target = tracking.global_position
+	target.x += randf_range(-stutter, stutter)

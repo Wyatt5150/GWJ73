@@ -5,7 +5,7 @@
 
 [node name="SpritesComponent" type="AnimatedSprite2D"]
 sprite_frames = ExtResource("1_127j6")
-animation = &"Moving"
+animation = &"Land"
 autoplay = "Idle"
 offset = Vector2(0, -16)
 script = ExtResource("2_vyyln")

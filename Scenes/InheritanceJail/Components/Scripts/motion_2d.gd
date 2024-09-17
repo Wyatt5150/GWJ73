@@ -46,6 +46,10 @@ var coyote_used : bool = false
 var jumps = 0
 
 
+"""ANIMATION SIGNALS"""
+signal set_animation(animation : String)
+
+
 """SIGNAL RECIEVERS"""
 func ChangeDirection(_direction : float) -> void:
 	horizontal_direction = _direction
@@ -58,6 +62,7 @@ func Jump() -> void:
 		jump_buffer = jump_buffer_time
 		return
 	
+	set_animation.emit("Jump")
 	coyote_used = true
 	parent.velocity.y = jump_velocity
 	jumps -= 1
@@ -68,15 +73,23 @@ func _ready():
 	if parent_override:
 		parent = parent_override
 	speed = speed * randf_range(1.0-variance_strength, 1.0+variance_strength)
+	
+	set_animation.emit("Idle")
 
 func _process(delta: float) -> void:
 	# Jumping Timers
 	jump_buffer -= delta
 	landing_lag -= delta
 	if parent.is_on_floor():
+		if horizontal_direction:
+			set_animation.emit("Moving")
+		else:
+			set_animation.emit("Idle")
 		if time_off_floor > 0.0:
 			_Land()
 	else:
+		if parent.velocity.y > 0.0:
+			set_animation.emit("Fall")
 		time_off_floor += delta
 		if not coyote_used and time_off_floor > coyote_time :
 			coyote_used = true
@@ -96,7 +109,7 @@ func _ApplyGravity(delta : float) -> void:
 	else:
 		parent.velocity += gravity_direction * gravity * delta * gravity_strength_modifier
 
-func _ApplyHorizontalMotion(delta : float) -> void:
+func _ApplyHorizontalMotion(_delta : float) -> void:
 	if horizontal_direction:
 		parent.velocity.x = horizontal_direction * speed
 	else:
@@ -107,6 +120,7 @@ func _Land():
 	jumps = number_of_jumps
 	landing_lag = landing_lag_time
 	coyote_used = false
+	set_animation.emit("Land")
 
 func _CanJump() -> bool:
 	if jumps < 1:

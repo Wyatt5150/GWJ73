@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsphn7qmqcnpf"]
+[gd_scene load_steps=6 format=3 uid="uid://bsphn7qmqcnpf"]
 
 [ext_resource type="Texture2D" uid="uid://bcws23ud5u66w" path="res://icon.svg" id="1_dqapv"]
-[ext_resource type="Script" path="res://Scripts/controllable.gd" id="1_so7nv"]
 [ext_resource type="PackedScene" uid="uid://divbc678so3o4" path="res://Scenes/InheritanceJail/Controllers/enemy_controller.tscn" id="3_5kfx3"]
 [ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="4_oo7oj"]
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="8_vgwlq"]
@@ -10,10 +9,8 @@
 size = Vector2(32, 32)
 
 [node name="Enemy" type="CharacterBody2D"]
-visible = false
-collision_layer = 8
+collision_layer = 16
 collision_mask = 3
-script = ExtResource("1_so7nv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
@@ -24,20 +21,20 @@ texture = ExtResource("1_dqapv")
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_7u6mm")
 
-[node name="EnemyController" parent="." instance=ExtResource("3_5kfx3")]
+[node name="EnemyController" parent="." node_paths=PackedStringArray("targeting_node") instance=ExtResource("3_5kfx3")]
+targeting_node = NodePath("TargetingComponent")
 
 [node name="TargetingComponent" parent="EnemyController" instance=ExtResource("4_oo7oj")]
-target_type = Array[int]([2, 0])
-targeting_mode = null
-radius = null
-disabled = null
+target_type = Array[int]([2, 3])
 
 [node name="Motion2D" parent="." instance=ExtResource("8_vgwlq")]
+speed = 200.0
+variance_strength = 0.15
 jump_buffer_time = 0.0
 coyote_time = 0.1
-jump_velocity = -500.0
+landing_lag_time = 1.5
+jump_velocity = -600.0
 
 [connection signal="change_direction" from="EnemyController" to="Motion2D" method="ChangeDirection"]
 [connection signal="fallthrough" from="EnemyController" to="Motion2D" method="Fallthrough"]
 [connection signal="jump" from="EnemyController" to="Motion2D" method="Jump"]
-[connection signal="override_parent" from="EnemyController" to="Motion2D" method="SetParent"]

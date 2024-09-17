@@ -3,7 +3,7 @@ class_name PlayerController
 
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	change_direction.emit(Input.get_axis("Left", "Right"))
 	
 	if Input.is_action_just_pressed("Up"):

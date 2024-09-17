@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb2ohd1ijt6cc"]
+[gd_scene load_steps=4 format=3 uid="uid://cb2ohd1ijt6cc"]
 
 [ext_resource type="Theme" uid="uid://cgj4rso7s6ry5" path="res://Resources/MainTheme.tres" id="2_iykfj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6eaa"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8pmy"]
+size = Vector2(128, 128)
+
 [node name="Vault" type="StaticBody2D" groups=["Tower"]]
-collision_layer = 17
+collision_layer = 9
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -41,3 +44,10 @@ text = "Souls:
 0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_f8pmy")
