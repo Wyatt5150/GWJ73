@@ -30,6 +30,9 @@ const FLOOR_PATH : Dictionary = {
 @export var current_scene : SCENES = SCENES.MAIN_MENU
 @export var endless : bool = true
 
+const SPAWNCAP = 5
+
+
 var current_floor = 0 :
 	set(new_val):
 		current_floor = new_val
