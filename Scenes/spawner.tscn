@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvabb0k33svu6"]
+[gd_scene load_steps=4 format=3 uid="uid://cvabb0k33svu6"]
 
 [ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_78d48"]
 [ext_resource type="Script" path="res://Scenes/InheritanceJail/Controllers/Scripts/spawner_controller.gd" id="2_wiq3x"]
+[ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="3_xh5j1"]
 
-[node name="Spawner" type="Node2D"]
+[node name="Spawner" type="Node2D" node_paths=PackedStringArray("targeter")]
 script = ExtResource("1_78d48")
+targeter = NodePath("TargetingComponent")
 
 [node name="SpawnerController" type="Node2D" parent="."]
 script = ExtResource("2_wiq3x")
 
 [node name="SpawnTimer" type="Timer" parent="SpawnerController"]
 wait_time = 3.0
+
+[node name="TargetingComponent" parent="." instance=ExtResource("3_xh5j1")]
+target_type = Array[int]([2, 3])
+radius = 6
 
 [connection signal="timeout" from="SpawnerController/SpawnTimer" to="." method="Spawn"]

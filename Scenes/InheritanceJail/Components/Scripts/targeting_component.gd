@@ -24,7 +24,7 @@ func FindTarget() -> Node2D:
 	
 	var target = areas.pop_back()
 	if !target:
-		return self
+		return null
 	
 	var distance = target.global_position.distance_to(location)
 	
