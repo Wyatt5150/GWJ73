@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://kmw082pqte8e"]
-
-[ext_resource type="Script" path="res://Scenes/InheritanceJail/Components/Scripts/fall_through_component.gd" id="1_feic6"]
-
-[node name="FallThroughComponent" type="Node"]
-script = ExtResource("1_feic6")
-action_name = "Fallthrough"

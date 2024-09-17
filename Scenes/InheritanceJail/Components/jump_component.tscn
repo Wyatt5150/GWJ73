@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://wfgkonfk5hwb"]
-
-[ext_resource type="Script" path="res://Scenes/InheritanceJail/Components/Scripts/jump_component.gd" id="1_clgdb"]
-
-[node name="JumpComponent" type="Node"]
-script = ExtResource("1_clgdb")
-action_name = "Jump"

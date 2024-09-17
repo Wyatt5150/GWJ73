@@ -15,15 +15,21 @@ run/main_scene="res://Levels/floor.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Resources/MainBusLayout.tres"
+
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Data="*res://Autoloads/PersistentData.gd"
+Audio="*res://Autoloads/audio.tscn"
 
 [display]
 
 window/size/viewport_width=1080
 window/size/viewport_height=720
+window/stretch/mode="viewport"
 
 [editor_plugins]
 

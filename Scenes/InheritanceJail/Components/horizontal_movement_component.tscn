@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjye71sql32pt"]
-
-[ext_resource type="Script" path="res://Scenes/InheritanceJail/Components/Scripts/horizontal_movement_component.gd" id="1_4la1k"]
-
-[node name="HorizontalMovementComponent" type="Node"]
-script = ExtResource("1_4la1k")
-action_name = "Movement"

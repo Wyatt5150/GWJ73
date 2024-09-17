@@ -27,7 +27,7 @@ func ready():
 	%TargetingArea.scale *= radius
 
 func _Action(_args):
-	var areas = %TargetingArea.get_overlapping_areas()
+	var areas = %TargetingArea.get_overlapping_bodies()
 	var parent_location = parent.global_position
 	
 	if len(areas) < 1:

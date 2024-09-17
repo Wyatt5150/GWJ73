@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://rdajq45ts5p2"]
+
+[ext_resource type="SpriteFrames" uid="uid://k3nv78gqdjcb" path="res://Resources/Player.tres" id="1_127j6"]
+[ext_resource type="Script" path="res://Scenes/InheritanceJail/Components/Scripts/sprites_component.gd" id="2_vyyln"]
+
+[node name="SpritesComponent" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_127j6")
+animation = &"Moving"
+autoplay = "Idle"
+offset = Vector2(0, -16)
+script = ExtResource("2_vyyln")

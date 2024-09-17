@@ -8,39 +8,40 @@ class_name EnemyController
 @export var y_offset : float = 30
 
 var tracking_update_stutter : float = randf_range(0.0, 0.20)
-var target : Vector2 = Vector2.ZERO
+var target : Vector2
+
+
 
 func ready():
-	UpdateTrackingPosition()
 	$Timer.wait_time = tracking_update_interval + tracking_update_stutter
-	$Timer.start()
+	#$Timer.start()
 
 func _physics_process(delta: float) -> void:
+	if not target:
+		return
+	
 	if parent.global_position.x < target.x - x_offset:
-		parent.direction = 1.0
+		change_direction.emit(1.0)
 	elif parent.global_position.x > target.x + x_offset:
-		parent.direction = -1.0
+		change_direction.emit(-1.0)
 	else:
-		parent.direction = 0.0
-	
-	Do_Action("Movement", [delta])
-	
+		change_direction.emit(0.0)
 	
 	if parent.global_position.y > target.y + y_offset:
-		Do_Action("Jump", [delta])
+		jump.emit()
 	
 	if parent.global_position.y < target.y - y_offset:
-		Do_Action("Fallthrough", [false])
+		fallthrough.emit(false)
 	else:
-		Do_Action("Fallthrough", [true])
+		fallthrough.emit(true)
 	
 	parent.move_and_slide()
 
-func UpdateTrackingPosition():
-	if !is_instance_valid(parent.tracking):
-		Do_Action("Target", [])
-		target = self.global_position
-		return
-	
-	target = parent.tracking.global_position
-	target.x += randf_range(-stutter, stutter)
+#func UpdateTrackingPosition():
+	##if !is_instance_valid(parent.tracking):
+		##Do_Action("Target", [])
+		##target = parent.global_position - Vector2(0, 50)
+		##return
+	#
+	#target = parent.tracking.global_position
+	#target.x += randf_range(-stutter, stutter)

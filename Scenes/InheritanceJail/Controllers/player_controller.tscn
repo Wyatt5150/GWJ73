@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Scenes/InheritanceJail/Controllers/Scripts/player_controller.gd" id="1_hgtf7"]
 
-[node name="PlayerController" type="Node"]
+[node name="PlayerController" type="Node2D"]
 script = ExtResource("1_hgtf7")

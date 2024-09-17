@@ -1,7 +1,4 @@
-extends ConnectedParent
+extends Node2D
 class_name BaseComponent
 
-@export var action_name : String = ""
-
-func _Action(_args : Array):
-	pass
+@export var disabled : bool = true 
