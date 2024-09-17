@@ -38,6 +38,7 @@ var variance : float = 1.0
 @export_range(0.0, 0.5) var coyote_time : float = 0.2
 @export_range(0.0, 3.0) var landing_lag_time : float = 0.1
 @export var jump_velocity : float = -1000.0
+@export_range(0.5, 3.0) var subsequent_jump_strength : float = 1.2
 
 var time_off_floor : float = 0.0
 var jump_buffer : float = 0.0
@@ -62,9 +63,13 @@ func Jump() -> void:
 		jump_buffer = jump_buffer_time
 		return
 	
+	var jump_strength = jump_velocity
+	if jumps < number_of_jumps:
+		jump_strength *= subsequent_jump_strength
+		
 	set_animation.emit("Jump")
 	coyote_used = true
-	parent.velocity.y = jump_velocity
+	parent.velocity.y = jump_strength
 	jumps -= 1
 
 

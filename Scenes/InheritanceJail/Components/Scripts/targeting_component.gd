@@ -20,8 +20,6 @@ func FindTarget() -> Node2D:
 	var areas : Array = get_overlapping_areas()
 	var location = self.global_position
 	
-	print(areas)
-	
 	var target = areas.pop_back()
 	if !target:
 		return null
