@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://vj5oj5b5r6fl"]
-
-[ext_resource type="Script" path="res://Scenes/InheritanceJail/Components/Scripts/dash_component.gd" id="1_12mit"]
-
-[node name="DashComponent" type="Node"]
-script = ExtResource("1_12mit")
-action_name = "Dash"

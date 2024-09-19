@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://1ejl0k88s3yi"]
+[gd_scene load_steps=7 format=3 uid="uid://1ejl0k88s3yi"]
 
+[ext_resource type="PackedScene" uid="uid://chldgtiftv7o3" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="3_rpjv3"]
 [ext_resource type="PackedScene" uid="uid://rdajq45ts5p2" path="res://Scenes/InheritanceJail/Components/sprites_component.tscn" id="4_0mcb7"]
 [ext_resource type="PackedScene" uid="uid://bfk6fuljfk6dq" path="res://Scenes/InheritanceJail/Controllers/player_controller.tscn" id="5_vaqn0"]
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="6_rnyw7"]
@@ -26,8 +27,8 @@ shape = SubResource("CapsuleShape2D_eedgu")
 
 [node name="Motion2D" parent="." instance=ExtResource("6_rnyw7")]
 gravity_strength_modifier = 1.3
-number_of_jumps = 4
-jump_velocity = -700.0
+
+[node name="JumpComponent" parent="." instance=ExtResource("3_rpjv3")]
 
 [node name="SpritesComponent" parent="." instance=ExtResource("4_0mcb7")]
 animation = &"Idle"
@@ -42,8 +43,9 @@ monitoring = false
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_t3w31")
 
-[connection signal="change_direction" from="PlayerController" to="Motion2D" method="ChangeDirection"]
+[connection signal="change_direction" from="PlayerController" to="Motion2D" method="ChangeHorizontalDirection"]
 [connection signal="change_direction" from="PlayerController" to="SpritesComponent" method="ChangeDirection"]
 [connection signal="fallthrough" from="PlayerController" to="Motion2D" method="Fallthrough"]
-[connection signal="jump" from="PlayerController" to="Motion2D" method="Jump"]
+[connection signal="jump" from="PlayerController" to="JumpComponent" method="Jump"]
 [connection signal="set_animation" from="Motion2D" to="SpritesComponent" method="SetAnimation"]
+[connection signal="set_animation" from="JumpComponent" to="SpritesComponent" method="SetAnimation"]

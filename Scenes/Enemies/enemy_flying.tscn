@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://nrb6a76tkw8m"]
+
+[ext_resource type="Texture2D" uid="uid://bcws23ud5u66w" path="res://icon.svg" id="1_vxkk7"]
+[ext_resource type="PackedScene" uid="uid://divbc678so3o4" path="res://Scenes/InheritanceJail/Controllers/enemy_controller.tscn" id="2_yd2wr"]
+[ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="3_uv6sy"]
+[ext_resource type="Script" path="res://Scenes/Enemies/fly_component.gd" id="4_ckvyq"]
+[ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="5_7rral"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boi05"]
+radius = 16.0
+
+[node name="EnemyFlying" type="CharacterBody2D" groups=["Enemy"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.57628e-07, -16)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_vxkk7")
+
+[node name="EnemyController" parent="." node_paths=PackedStringArray("targeting_node") instance=ExtResource("2_yd2wr")]
+targeting_node = NodePath("../TargetingComponent")
+
+[node name="Motion2D" parent="." instance=ExtResource("3_uv6sy")]
+gravity_enabled = false
+
+[node name="FlyComponent" type="Node2D" parent="."]
+script = ExtResource("4_ckvyq")
+
+[node name="TargetingComponent" parent="." instance=ExtResource("5_7rral")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_boi05")
+
+[connection signal="change_direction" from="EnemyController" to="Motion2D" method="ChangeDirection"]

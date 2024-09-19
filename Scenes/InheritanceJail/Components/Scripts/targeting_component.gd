@@ -9,7 +9,7 @@ enum MODE {
 
 @export var target_type : Array[Data.LAYERS] = [Data.LAYERS.PLAYER]
 @export var targeting_mode : MODE = MODE.RANDOM
-@export var radius : int = 50
+@export var radius : int = 20
 
 func _ready():
 	for type in target_type:

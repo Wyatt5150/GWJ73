@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsphn7qmqcnpf"]
+[gd_scene load_steps=7 format=3 uid="uid://bsphn7qmqcnpf"]
 
 [ext_resource type="Texture2D" uid="uid://bcws23ud5u66w" path="res://icon.svg" id="1_dqapv"]
 [ext_resource type="PackedScene" uid="uid://divbc678so3o4" path="res://Scenes/InheritanceJail/Controllers/enemy_controller.tscn" id="3_5kfx3"]
 [ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="4_oo7oj"]
+[ext_resource type="PackedScene" uid="uid://chldgtiftv7o3" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="5_djug6"]
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="8_vgwlq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ktmt"]
 radius = 16.0
 
-[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+[node name="EnemyGrounded" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 16
 collision_mask = 3
 floor_snap_length = 8.0
@@ -31,11 +32,9 @@ target_type = Array[int]([2, 3])
 [node name="Motion2D" parent="." instance=ExtResource("8_vgwlq")]
 speed = 200.0
 variance_strength = 0.15
-jump_buffer_time = 0.0
-coyote_time = 0.1
-landing_lag_time = 1.5
-jump_velocity = -600.0
 
-[connection signal="change_direction" from="EnemyController" to="Motion2D" method="ChangeDirection"]
+[node name="JumpComponent" parent="." instance=ExtResource("5_djug6")]
+
+[connection signal="change_direction" from="EnemyController" to="Motion2D" method="ChangeHorizontalDirection"]
 [connection signal="fallthrough" from="EnemyController" to="Motion2D" method="Fallthrough"]
-[connection signal="jump" from="EnemyController" to="Motion2D" method="Jump"]
+[connection signal="jump" from="EnemyController" to="JumpComponent" method="Jump"]
