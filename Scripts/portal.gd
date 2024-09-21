@@ -14,14 +14,16 @@ class_name Portal
 @export var open : bool = false : 
 	set(new_val):
 		if new_val == true:
+			self.modulate.a = 1.0
 			%ChargingText.hide()
 			%InteractPrompt.show()
 		else:
+			self.modulate.a = 0.5
 			%InteractPrompt.hide()
 			%ChargingText.show()
 		open = new_val
 
-func Open(val : bool):
+func Open(val : bool = true):
 	open = val
 
 func Activate_Event(_area = null):

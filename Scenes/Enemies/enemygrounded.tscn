@@ -30,10 +30,14 @@ targeting_node = NodePath("TargetingComponent")
 target_type = Array[int]([2, 3])
 
 [node name="Motion2D" parent="." instance=ExtResource("8_vgwlq")]
-speed = 200.0
+speed = 100.0
 variance_strength = 0.15
 
 [node name="JumpComponent" parent="." instance=ExtResource("5_djug6")]
+jump_buffer_time = 0.0
+coyote_time = 0.0
+landing_lag_time = 1.0
+jump_velocity = -700.0
 
 [connection signal="change_direction" from="EnemyController" to="Motion2D" method="ChangeHorizontalDirection"]
 [connection signal="fallthrough" from="EnemyController" to="Motion2D" method="Fallthrough"]

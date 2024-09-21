@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://gaoomadfrdvd"]
+[gd_scene load_steps=4 format=3 uid="uid://gaoomadfrdvd"]
 
 [ext_resource type="Script" path="res://Autoloads/PersistentData.gd" id="1_phk2u"]
 [ext_resource type="Script" path="res://Scripts/audio_setting.gd" id="2_lds06"]
 [ext_resource type="Script" path="res://Scripts/settings.gd" id="2_ssvvi"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_yobsw"]
 
 [node name="Data" type="Node"]
 script = ExtResource("1_phk2u")
@@ -37,6 +36,25 @@ offset_right = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Portal Opens In: - -"
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="UI/Control"]
+offset_left = 8.0
+offset_top = 72.0
+offset_right = 192.0
+offset_bottom = 120.0
+
+[node name="SoulCount" type="Label" parent="UI/Control/Panel2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Souls: - -"
 vertical_alignment = 1
 
 [node name="Settings" type="Control" parent="UI/Control"]
@@ -163,18 +181,6 @@ offset_right = -16.0
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
-position = Vector2(280, 488)
-limit_left = -2008
-limit_top = -264
-limit_right = 2592
-limit_bottom = 848
-editor_draw_limits = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("4_yobsw")
 
 [connection signal="pressed" from="UI/Control/Settings/Button" to="UI/Control/Settings" method="_on_button_pressed"]
 [connection signal="value_changed" from="UI/Control/Settings/SettingsBox/Master/HSlider" to="UI/Control/Settings/SettingsBox/Master" method="_on_h_slider_value_changed"]

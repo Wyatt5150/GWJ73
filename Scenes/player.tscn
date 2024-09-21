@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://1ejl0k88s3yi"]
+[gd_scene load_steps=9 format=3 uid="uid://1ejl0k88s3yi"]
 
 [ext_resource type="PackedScene" uid="uid://chldgtiftv7o3" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="3_rpjv3"]
 [ext_resource type="PackedScene" uid="uid://rdajq45ts5p2" path="res://Scenes/InheritanceJail/Components/sprites_component.tscn" id="4_0mcb7"]
+[ext_resource type="Script" path="res://Scenes/weapons/scripts/player_weapons.gd" id="5_0fxkh"]
+[ext_resource type="PackedScene" uid="uid://du8l523rmcsbd" path="res://Scenes/weapons/balls.tscn" id="5_2h461"]
 [ext_resource type="PackedScene" uid="uid://bfk6fuljfk6dq" path="res://Scenes/InheritanceJail/Controllers/player_controller.tscn" id="5_vaqn0"]
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="6_rnyw7"]
 
@@ -44,6 +46,11 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_t3w31")
+
+[node name="Weapons" type="Node2D" parent="."]
+script = ExtResource("5_0fxkh")
+
+[node name="Balls" parent="Weapons" instance=ExtResource("5_2h461")]
 
 [connection signal="change_direction" from="PlayerController" to="Motion2D" method="ChangeHorizontalDirection"]
 [connection signal="change_direction" from="PlayerController" to="SpritesComponent" method="ChangeDirection"]

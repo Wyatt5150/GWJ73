@@ -20,6 +20,8 @@ func Deactivate_Event(_area = null):
 func Interact():
 	pass
 
+func ready():
+	pass
 
 """DO NOT OVERIDE"""
 func _ready():
@@ -36,6 +38,7 @@ func _ready():
 		
 	if active: _Activate()
 	else: _Deactivate()
+	ready()
 
 func _input(event: InputEvent) -> void:
 	if not active:
@@ -46,8 +49,10 @@ func _input(event: InputEvent) -> void:
 
 func _Activate(_area = null) -> void:
 	active = true
-	Activate_Event(_area)
+	if not self.is_queued_for_deletion():
+		Activate_Event(_area)
 
 func _Deactivate(_area = null) -> void:
 	active = false
-	Deactivate_Event(_area)
+	if not self.is_queued_for_deletion():
+		Deactivate_Event(_area)

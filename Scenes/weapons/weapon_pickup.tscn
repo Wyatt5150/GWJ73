@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://1752xu8fm3h0"]
+
+[ext_resource type="Script" path="res://Scenes/weapons/scripts/weapon_pickup.gd" id="1_it15w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hynj6"]
+size = Vector2(96, 80)
+
+[node name="WeaponPickup" type="Area2D"]
+position = Vector2(176, 200)
+monitorable = false
+script = ExtResource("1_it15w")
+pick_random = false
+active = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_hynj6")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.431373)
+offset_left = -48.0
+offset_top = -80.0
+offset_right = 48.0
+
+[node name="WeaponIcon" type="NinePatchRect" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = -24.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="CostPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.772549)
+offset_left = -80.0
+offset_top = -200.0
+offset_right = 80.0
+offset_bottom = -152.0
+
+[node name="Cost" type="Label" parent="CostPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10 Souls"
+horizontal_alignment = 1
+vertical_alignment = 1

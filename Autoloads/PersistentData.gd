@@ -17,7 +17,6 @@ const LAYERS_MAP : Dictionary = {
 	LAYERS.ENEMY : 5
 }
 
-
 enum SCENES {
 	MAIN_MENU,
 	FLOOR,
@@ -36,14 +35,13 @@ const SCENES_PATH : Dictionary = {
 var SPAWNCAP = 50
 
 
-
-
 var current_floor = 0 :
 	set(new_val):
 		current_floor = new_val
 
 var souls : int = 0 : 
 	set(new_val): 
+		%SoulCount.text = "Souls: " + str(new_val)
 		souls = new_val
 var starting_souls : int = 5
 
@@ -53,17 +51,15 @@ var deaths : int = 0 :
 		death_cost = 2 ** new_val
 		deaths = new_val
 
-
+func _ready() -> void:
+	souls = starting_souls
 
 func Transition():
 	get_tree().call_group("Portal", 'Open', false)
-	print("complete")
-	await get_tree().create_timer(3.0).timeout
 	
-	get_tree().call_group("Portal", 'Open', true)
-
-func Death():
-	pass
+	get_tree().change_scene_to_file(SCENES_PATH[SCENES.FLOOR])
+	
+	print("changed")
 
 
 func StartLevel():

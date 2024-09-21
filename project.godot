@@ -24,6 +24,7 @@ buses/default_bus_layout="res://Resources/MainBusLayout.tres"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Audio="*res://Autoloads/audio.tscn"
 Data="*res://Autoloads/data.tscn"
+WeaponData="*res://Autoloads/weapon_manager.tscn"
 
 [display]
 
