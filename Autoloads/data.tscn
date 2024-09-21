@@ -1,0 +1,182 @@
+[gd_scene load_steps=5 format=3 uid="uid://gaoomadfrdvd"]
+
+[ext_resource type="Script" path="res://Autoloads/PersistentData.gd" id="1_phk2u"]
+[ext_resource type="Script" path="res://Scripts/audio_setting.gd" id="2_lds06"]
+[ext_resource type="Script" path="res://Scripts/settings.gd" id="2_ssvvi"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_yobsw"]
+
+[node name="Data" type="Node"]
+script = ExtResource("1_phk2u")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="UI/Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 296.0
+offset_bottom = 64.0
+
+[node name="PortalTimer" type="Label" parent="UI/Control/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Portal Opens In: - -"
+vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_right = -8.0
+offset_bottom = 320.0
+grow_horizontal = 0
+script = ExtResource("2_ssvvi")
+
+[node name="Button" type="Button" parent="UI/Control/Settings"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "Settings"
+
+[node name="SettingsBox" type="VBoxContainer" parent="UI/Control/Settings"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Panel" parent="UI/Control/Settings/SettingsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/Control/Settings/SettingsBox/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Audio Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Master" type="Panel" parent="UI/Control/Settings/SettingsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_lds06")
+
+[node name="Label" type="Label" parent="UI/Control/Settings/SettingsBox/Master"]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 44.0
+text = "MASTER"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="UI/Control/Settings/SettingsBox/Master"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 39.0
+offset_right = -16.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Music" type="Panel" parent="UI/Control/Settings/SettingsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_lds06")
+bus = "Music"
+
+[node name="Label" type="Label" parent="UI/Control/Settings/SettingsBox/Music"]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 44.0
+text = "MUSIC"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="UI/Control/Settings/SettingsBox/Music"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 39.0
+offset_right = -16.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SFX" type="Panel" parent="UI/Control/Settings/SettingsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_lds06")
+bus = "SFX"
+
+[node name="Label" type="Label" parent="UI/Control/Settings/SettingsBox/SFX"]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 44.0
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="UI/Control/Settings/SettingsBox/SFX"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 39.0
+offset_right = -16.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(280, 488)
+limit_left = -2008
+limit_top = -264
+limit_right = 2592
+limit_bottom = 848
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("4_yobsw")
+
+[connection signal="pressed" from="UI/Control/Settings/Button" to="UI/Control/Settings" method="_on_button_pressed"]
+[connection signal="value_changed" from="UI/Control/Settings/SettingsBox/Master/HSlider" to="UI/Control/Settings/SettingsBox/Master" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="UI/Control/Settings/SettingsBox/Music/HSlider" to="UI/Control/Settings/SettingsBox/Music" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="UI/Control/Settings/SettingsBox/SFX/HSlider" to="UI/Control/Settings/SettingsBox/SFX" method="_on_h_slider_value_changed"]

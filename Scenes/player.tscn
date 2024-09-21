@@ -29,6 +29,8 @@ shape = SubResource("CapsuleShape2D_eedgu")
 gravity_strength_modifier = 1.3
 
 [node name="JumpComponent" parent="." instance=ExtResource("3_rpjv3")]
+number_of_jumps = 2
+jump_velocity = -600.0
 
 [node name="SpritesComponent" parent="." instance=ExtResource("4_0mcb7")]
 animation = &"Idle"
