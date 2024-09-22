@@ -48,7 +48,7 @@ func _ready():
 	
 	set_animation.emit("Idle")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if parent.is_on_floor():
 		if horizontal_direction:
 			set_animation.emit("Moving")

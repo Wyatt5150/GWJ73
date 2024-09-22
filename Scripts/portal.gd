@@ -36,4 +36,4 @@ func Interact():
 	if not open:
 		return
 	
-	Data.Transition()
+	Data.Transition(Data.STATE.WIN)

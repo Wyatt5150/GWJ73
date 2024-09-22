@@ -12,4 +12,4 @@ func _ready() -> void:
 	volume = volume
 
 func _on_h_slider_value_changed(value: float) -> void:
-	volume = value
+	volume = int(value)

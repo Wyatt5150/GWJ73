@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 			coyote_used = true
 			jumps -= 1
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if parent.is_on_floor() and jump_buffer > 0.0: Jump()
 
 func _Land():

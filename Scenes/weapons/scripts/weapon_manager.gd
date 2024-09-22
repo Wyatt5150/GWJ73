@@ -8,14 +8,6 @@ enum WEAPONS {
 	HOMING
 }
 
-var weapon_paths : Dictionary = {
-	WEAPONS.SYCTHE : ".tscn",
-	WEAPONS.SWORD : ".tscn",
-	WEAPONS.BALL : "balls.tscn",
-	WEAPONS.CLONE : ".tscn",
-	WEAPONS.HOMING : ".tscn"
-}
-
 class Weapon:
 	const base_path = "res://Scenes/weapons/"
 	const base_sprite_path = "res://icon.svg"
@@ -48,7 +40,8 @@ class Weapon:
 
 var WEAPON_DATA : Dictionary = {
 	WEAPONS.SYCTHE : Weapon.new(
-		".tscn"
+		".tscn",
+		"res://Assets/Sycthe.png"
 	),
 	WEAPONS.SWORD : Weapon.new(
 		".tscn",
@@ -56,10 +49,11 @@ var WEAPON_DATA : Dictionary = {
 	),
 	WEAPONS.BALL :Weapon.new(
 		".tscn",
-		"res://NotMine/LemanBall.png"
+		"res://NotMine/electricBall.png"
 	),
 	WEAPONS.CLONE : Weapon.new(
-		".tscn"
+		".tscn",
+		"res://NotMine/CloneIcon.png"
 	),
 	WEAPONS.HOMING : Weapon.new(
 		".tscn",
@@ -68,7 +62,7 @@ var WEAPON_DATA : Dictionary = {
 }
 
 func Reset_Weapon_Data() -> void:
-	for weapon in WEAPONS:
+	for weapon in WEAPONS.values():
 		WEAPON_DATA[weapon].Reset()
 
 func Upgrade_Weapon(weapon : WEAPONS) -> void:

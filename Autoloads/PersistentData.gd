@@ -19,24 +19,28 @@ const LAYERS_MAP : Dictionary = {
 
 enum SCENES {
 	MAIN_MENU,
-	FLOOR,
-	TRANSITION
+	FLOOR
 }
 
 const SCENES_PATH : Dictionary = {
 	SCENES.MAIN_MENU : "res://Levels/MainMenu.tscn",
-	SCENES.FLOOR : "res://Levels/floor.tscn",
-	SCENES.TRANSITION : ""
+	SCENES.FLOOR : "res://Levels/floor.tscn"
+}
+
+enum STATE {
+	WIN,
+	LOSE
 }
 
 @export var current_scene : SCENES = SCENES.MAIN_MENU
-
+@export var transition : PackedScene
 
 var SPAWNCAP = 50
 
 
 var current_floor = 0 :
 	set(new_val):
+		%FloorNumber.text = "Floor: " + str(new_val)
 		current_floor = new_val
 
 var souls : int = 0 : 
@@ -52,19 +56,28 @@ var deaths : int = 0 :
 		deaths = new_val
 
 func _ready() -> void:
-	souls = starting_souls
+	current_floor = 0
+	StartLevel()
 
-func Transition():
+func Transition(state : STATE = STATE.WIN):
 	get_tree().call_group("Portal", 'Open', false)
 	
-	get_tree().change_scene_to_file(SCENES_PATH[SCENES.FLOOR])
+	if state == STATE.WIN:
+		current_floor += 1
+	else:
+		current_floor = 0
 	
-	print("changed")
+	get_tree().change_scene_to_packed(transition)
 
 
 func StartLevel():
 	if current_floor == 0:
-		%PortalTimer.hide()
+		WeaponData.Reset_Weapon_Data()
+		souls = starting_souls
+		deaths = 0
+		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.MAIN_MENU])
+		#TODO TIMER.stop
 	else:
-		%PortalTimer.show()
-	pass
+		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.FLOOR])
+		#TODO TIMER.start
+	
