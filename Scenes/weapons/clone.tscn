@@ -1,6 +1,5 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4up01wo0sl5o"]
 
-[ext_resource type="PackedScene" uid="uid://b7h6soar4bbv8" path="res://Scenes/InheritanceJail/Controllers/clone_controller.tscn" id="1_27gfr"]
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="2_hfox2"]
 [ext_resource type="PackedScene" uid="uid://d0f8nxi6mbuhy" path="res://Scenes/InheritanceJail/Components/hurtbox.tscn" id="4_3be2v"]
 [ext_resource type="PackedScene" uid="uid://rdajq45ts5p2" path="res://Scenes/InheritanceJail/Components/sprites_component.tscn" id="4_x36w5"]
@@ -13,28 +12,35 @@ height = 24.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f0hg"]
 size = Vector2(16, 28)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hfst1"]
-radius = 96.0833
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8y6k"]
+radius = 64.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jry2n"]
+radius = 0.25
+height = 0.5
+rings = 2
+
+[node name="Bomb" type="CharacterBody2D"]
 scale = Vector2(2, 2)
-collision_layer = 4
+collision_layer = 0
 collision_mask = 3
 floor_stop_on_slope = false
 floor_block_on_wall = false
+script = ExtResource("5_4essd")
+explosion_time = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_eedgu")
 
-[node name="CloneController" parent="." instance=ExtResource("1_27gfr")]
-
 [node name="Motion2D" parent="." instance=ExtResource("2_hfox2")]
 
 [node name="SpritesComponent" parent="." instance=ExtResource("4_x36w5")]
+modulate = Color(1, 0, 0, 1)
 animation = &"Idle"
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_3be2v")]
+type = 3
 killable = false
 soul_value = 0
 
@@ -43,9 +49,29 @@ position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_5f0hg")
 
 [node name="Explosion" type="Area2D" parent="."]
-script = ExtResource("5_4essd")
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
-shape = SubResource("CircleShape2D_hfst1")
+shape = SubResource("CircleShape2D_y8y6k")
+
+[node name="Polygon2D" type="Polygon2D" parent="Explosion"]
+color = Color(1, 0, 0, 1)
+
+[node name="Flash" type="MeshInstance2D" parent="Explosion"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0, 0, 0.313726)
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(256, 256)
+mesh = SubResource("CapsuleMesh_jry2n")
+
+[node name="SplodeyTimer" type="Timer" parent="Explosion"]
+unique_name_in_owner = true
+process_callback = 0
+one_shot = true
 
 [connection signal="set_animation" from="Motion2D" to="SpritesComponent" method="SetAnimation"]
+[connection signal="area_entered" from="Explosion" to="." method="_on_explosion_area_entered"]
+[connection signal="timeout" from="Explosion/SplodeyTimer" to="." method="Explode"]

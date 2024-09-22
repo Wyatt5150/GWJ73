@@ -17,6 +17,7 @@ var target : Vector2
 func ready():
 	$Timer.wait_time = tracking_update_interval + tracking_update_stutter
 	$Timer.start()
+	damage = damage * Data.current_floor
 
 func _physics_process(_delta: float) -> void:
 	if not target:

@@ -6,7 +6,11 @@ extends Node2D
 
 @onready var spawncap = Data.SPAWNCAP
 
+@export var spawn_time : float = 3.0
+
 func _ready() -> void:
+	%SpawnTimer.wait_time = spawn_time
+	%SpawnTimer.start()
 	if len(spawns) < 1:
 		queue_free()
 

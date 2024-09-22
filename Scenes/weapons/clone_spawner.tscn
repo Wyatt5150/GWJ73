@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjp1dr4wt6prc"]
+
+[ext_resource type="Script" path="res://Scenes/Clone.gd" id="1_1utmq"]
+[ext_resource type="PackedScene" uid="uid://b4up01wo0sl5o" path="res://Scenes/weapons/clone.tscn" id="2_leg7v"]
+
+[node name="Clone" type="Node2D"]
+script = ExtResource("1_1utmq")
+projectile = ExtResource("2_leg7v")
+type = 3
+base_damage = 5
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Timer" to="." method="Fire"]

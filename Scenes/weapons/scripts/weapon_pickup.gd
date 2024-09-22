@@ -18,7 +18,7 @@ func ready() -> void:
 	if cost_override >= 0:
 		cost = cost_override
 	else:
-		cost = base_cost * (Data.current_floor + 1)
+		cost = base_cost * (1.5 ** (Data.current_floor))
 	
 	weapon_data = WeaponData.Get_Weapon(type)
 	

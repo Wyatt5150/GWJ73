@@ -59,7 +59,7 @@ var portal_timer : float = 50.0 :
 	set(new_val):
 		if current_floor == 0:
 			%PortalTimer.text = "Portal Opens In: - -"
-			portal_timer = 50.0
+			portal_timer = 60.0
 			return
 		portal_timer = new_val
 		if portal_timer > 0.0:
@@ -68,9 +68,8 @@ var portal_timer : float = 50.0 :
 			return
 		else:
 			get_tree().call_group("Portal", 'Open', true)
-			%PortalTimer.text = "Portal Closes In: " + str(10 + int(portal_timer))
-			if portal_timer < -10.0:
-				portal_timer = 50.0
+			%PortalTimer.text = "Portal Is Open"
+			portal_timer = 0.0
 			return
 			
 		
@@ -86,7 +85,6 @@ func _process(delta: float) -> void:
 func Transition(state : STATE = STATE.WIN):
 	get_tree().call_group("Portal", 'Open', false)
 	timing = false
-	portal_timer = 50.0
 	
 	if state == STATE.WIN:
 		current_floor += 1
@@ -105,5 +103,6 @@ func StartLevel():
 		deaths = 0
 		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.MAIN_MENU])
 	else:
+		portal_timer = 60.0
 		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.FLOOR])
 	

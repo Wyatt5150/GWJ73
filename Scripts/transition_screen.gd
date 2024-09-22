@@ -20,7 +20,8 @@ var fact_list : Array = [
 var fact_list_dead : Array = [
 	"Your computer does not need System32 to function.",
 	"Your IP address is 127.0.0.1.",
-	"Your home is very secure… Or is it?"
+	"Your home is very secure... \nOr is it?",
+	"You cannot outrun a bear."
 ]
 
 var fact : String

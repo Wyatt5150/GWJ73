@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://df6fq1j07twf3"]
+
+[ext_resource type="Texture2D" uid="uid://bcws23ud5u66w" path="res://icon.svg" id="1_t5k4w"]
+[ext_resource type="PackedScene" uid="uid://divbc678so3o4" path="res://Scenes/InheritanceJail/Controllers/enemy_controller.tscn" id="2_xuhsi"]
+[ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="3_2rpvj"]
+[ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="4_iq6jn"]
+[ext_resource type="PackedScene" uid="uid://chldgtiftv7o3" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="5_ckct2"]
+[ext_resource type="PackedScene" uid="uid://d0f8nxi6mbuhy" path="res://Scenes/InheritanceJail/Components/hurtbox.tscn" id="6_xypsw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ktmt"]
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5hxx"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nfxb"]
+size = Vector2(64, 58)
+
+[node name="EnemyGrounded" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 16
+collision_mask = 3
+floor_snap_length = 8.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.15256e-07, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_t5k4w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("CircleShape2D_7ktmt")
+
+[node name="EnemyController" parent="." node_paths=PackedStringArray("targeting_node") instance=ExtResource("2_xuhsi")]
+targeting_node = NodePath("TargetingComponent")
+damage = 5
+
+[node name="TargetingComponent" parent="EnemyController" instance=ExtResource("3_2rpvj")]
+
+[node name="Motion2D" parent="." instance=ExtResource("4_iq6jn")]
+speed = 50.0
+
+[node name="JumpComponent" parent="." instance=ExtResource("5_ckct2")]
+jump_buffer_time = 0.0
+coyote_time = 0.0
+landing_lag_time = 2.0
+jump_velocity = -400.0
+
+[node name="Hurtbox" parent="." instance=ExtResource("6_xypsw")]
+type = 4
+max_health = 30
+soul_value = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_q5hxx")
+
+[node name="HitThePlayer" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitThePlayer"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_7nfxb")
+
+[connection signal="change_direction" from="EnemyController" to="Motion2D" method="ChangeHorizontalDirection"]
+[connection signal="fallthrough" from="EnemyController" to="Motion2D" method="Fallthrough"]
+[connection signal="jump" from="EnemyController" to="JumpComponent" method="Jump"]
+[connection signal="area_entered" from="HitThePlayer" to="EnemyController" method="DamagePlayer"]

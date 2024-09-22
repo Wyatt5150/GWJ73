@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://du8l523rmcsbd"]
 
-[ext_resource type="Script" path="res://Scenes/weapons/balls.gd" id="1_12x8i"]
+[ext_resource type="Script" path="res://Scenes/weapons/scripts/balls.gd" id="1_12x8i"]
 [ext_resource type="PackedScene" uid="uid://d12a511pro0m1" path="res://Scenes/weapons/ball.tscn" id="2_qyeci"]
 
 [node name="Balls" type="Node2D"]

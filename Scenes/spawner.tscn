@@ -12,6 +12,7 @@ targeter = NodePath("TargetingComponent")
 script = ExtResource("2_wiq3x")
 
 [node name="SpawnTimer" type="Timer" parent="SpawnerController"]
+unique_name_in_owner = true
 wait_time = 3.0
 
 [node name="TargetingComponent" parent="." instance=ExtResource("3_xh5j1")]
