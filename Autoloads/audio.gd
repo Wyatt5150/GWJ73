@@ -2,19 +2,31 @@ extends Node
 
 @onready var music = $Music
 
-enum MUSIC_TRACKS {}
+enum MUSIC_TRACKS {
+	CLOCK_TOWER
+}
+
 enum SFX_TRACKS {
-	VINE_BOOM
+	VINE_BOOM,
+	DEATH,
+	HURT
 }
 
 const _MUSIC_PATHS = {
+	MUSIC_TRACKS.CLOCK_TOWER : "res://NotMine/clock-tower-114282.mp3"
 }
 
 const _SFX_PATHS = {
-	SFX_TRACKS.VINE_BOOM : "res://NotMine/vine-boom.mp3"
+	SFX_TRACKS.VINE_BOOM : "res://NotMine/vine-boom.mp3",
+	SFX_TRACKS.DEATH : "res://NotMine/pixel-death-66829.mp3",
+	SFX_TRACKS.HURT : "res://NotMine/retro-hurt-2-236675.mp3"
 }
 
 var _currentMusic = null
+
+func StopMusic() -> void:
+	_currentMusic = null
+	music.stop()
 
 func ChangeMusic(track:MUSIC_TRACKS) -> void:
 	if _currentMusic == track: return

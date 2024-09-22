@@ -32,7 +32,6 @@ enum STATE {
 	LOSE
 }
 
-@export var current_scene : SCENES = SCENES.MAIN_MENU
 @export var transition : PackedScene
 
 var SPAWNCAP = 50
@@ -47,7 +46,7 @@ var souls : int = 0 :
 	set(new_val): 
 		%SoulCount.text = "Souls: " + str(new_val)
 		souls = new_val
-var starting_souls : int = 5
+var starting_souls : int = 10
 
 var death_cost : int = 1
 var deaths : int = 0 :
@@ -55,29 +54,56 @@ var deaths : int = 0 :
 		death_cost = 2 ** new_val
 		deaths = new_val
 
+var timing = false
+var portal_timer : float = 50.0 :
+	set(new_val):
+		if current_floor == 0:
+			%PortalTimer.text = "Portal Opens In: - -"
+			portal_timer = 50.0
+			return
+		portal_timer = new_val
+		if portal_timer > 0.0:
+			get_tree().call_group("Portal", 'Open', false)
+			%PortalTimer.text = "Portal Opens In: " + str(int(portal_timer))
+			return
+		else:
+			get_tree().call_group("Portal", 'Open', true)
+			%PortalTimer.text = "Portal Closes In: " + str(10 + int(portal_timer))
+			if portal_timer < -10.0:
+				portal_timer = 50.0
+			return
+			
+		
+
 func _ready() -> void:
 	current_floor = 0
 	StartLevel()
 
+func _process(delta: float) -> void:
+	if timing:
+		portal_timer -= delta
+
 func Transition(state : STATE = STATE.WIN):
 	get_tree().call_group("Portal", 'Open', false)
+	timing = false
+	portal_timer = 50.0
 	
 	if state == STATE.WIN:
 		current_floor += 1
 	else:
 		current_floor = 0
 	
-	get_tree().change_scene_to_packed(transition)
+	get_tree().call_deferred("change_scene_to_packed", transition)
 
 
 func StartLevel():
+	timing = true
+	Audio.ChangeMusic(Audio.MUSIC_TRACKS.CLOCK_TOWER)
 	if current_floor == 0:
 		WeaponData.Reset_Weapon_Data()
 		souls = starting_souls
 		deaths = 0
 		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.MAIN_MENU])
-		#TODO TIMER.stop
 	else:
 		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.FLOOR])
-		#TODO TIMER.start
 	

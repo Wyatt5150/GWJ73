@@ -1,6 +1,9 @@
 extends Area2D
 class_name InteractionArea
 
+
+@export var target : Data.LAYERS = Data.LAYERS.PLAYER
+
 @export var always_active : bool = false
 @export var active : bool = true : 
 	set(new_val):
@@ -27,7 +30,7 @@ func ready():
 func _ready():
 	self.collision_layer = 0
 	self.collision_mask = 0
-	self.set_collision_mask_value(Data.LAYERS_MAP[Data.LAYERS.PLAYER], true)
+	self.set_collision_mask_value(Data.LAYERS_MAP[target], true)
 	self.area_entered.connect(Callable(self, "_Activate"))
 	self.area_exited.connect(Callable(self, "_Deactivate"))
 	

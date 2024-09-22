@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4up01wo0sl5o"]
+
+[ext_resource type="PackedScene" uid="uid://b7h6soar4bbv8" path="res://Scenes/InheritanceJail/Controllers/clone_controller.tscn" id="1_27gfr"]
+[ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="2_hfox2"]
+[ext_resource type="PackedScene" uid="uid://d0f8nxi6mbuhy" path="res://Scenes/InheritanceJail/Components/hurtbox.tscn" id="4_3be2v"]
+[ext_resource type="PackedScene" uid="uid://rdajq45ts5p2" path="res://Scenes/InheritanceJail/Components/sprites_component.tscn" id="4_x36w5"]
+[ext_resource type="Script" path="res://Scenes/weapons/scripts/explosion.gd" id="5_4essd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eedgu"]
+radius = 8.0
+height = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f0hg"]
+size = Vector2(16, 28)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hfst1"]
+radius = 96.0833
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 3
+floor_stop_on_slope = false
+floor_block_on_wall = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_eedgu")
+
+[node name="CloneController" parent="." instance=ExtResource("1_27gfr")]
+
+[node name="Motion2D" parent="." instance=ExtResource("2_hfox2")]
+
+[node name="SpritesComponent" parent="." instance=ExtResource("4_x36w5")]
+animation = &"Idle"
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_3be2v")]
+killable = false
+soul_value = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_5f0hg")
+
+[node name="Explosion" type="Area2D" parent="."]
+script = ExtResource("5_4essd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
+shape = SubResource("CircleShape2D_hfst1")
+
+[connection signal="set_animation" from="Motion2D" to="SpritesComponent" method="SetAnimation"]

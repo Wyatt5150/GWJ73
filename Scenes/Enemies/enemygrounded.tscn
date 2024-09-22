@@ -1,13 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsphn7qmqcnpf"]
+[gd_scene load_steps=10 format=3 uid="uid://bsphn7qmqcnpf"]
 
 [ext_resource type="Texture2D" uid="uid://bcws23ud5u66w" path="res://icon.svg" id="1_dqapv"]
 [ext_resource type="PackedScene" uid="uid://divbc678so3o4" path="res://Scenes/InheritanceJail/Controllers/enemy_controller.tscn" id="3_5kfx3"]
 [ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="4_oo7oj"]
 [ext_resource type="PackedScene" uid="uid://chldgtiftv7o3" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="5_djug6"]
+[ext_resource type="PackedScene" uid="uid://d0f8nxi6mbuhy" path="res://Scenes/InheritanceJail/Components/hurtbox.tscn" id="6_t2q6f"]
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="8_vgwlq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ktmt"]
 radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5hxx"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nfxb"]
 
 [node name="EnemyGrounded" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 16
@@ -27,7 +33,6 @@ shape = SubResource("CircleShape2D_7ktmt")
 targeting_node = NodePath("TargetingComponent")
 
 [node name="TargetingComponent" parent="EnemyController" instance=ExtResource("4_oo7oj")]
-target_type = Array[int]([2, 3])
 
 [node name="Motion2D" parent="." instance=ExtResource("8_vgwlq")]
 speed = 100.0
@@ -39,6 +44,23 @@ coyote_time = 0.0
 landing_lag_time = 1.0
 jump_velocity = -700.0
 
+[node name="Hurtbox" parent="." instance=ExtResource("6_t2q6f")]
+type = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_q5hxx")
+
+[node name="HitThePlayer" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitThePlayer"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_7nfxb")
+
 [connection signal="change_direction" from="EnemyController" to="Motion2D" method="ChangeHorizontalDirection"]
 [connection signal="fallthrough" from="EnemyController" to="Motion2D" method="Fallthrough"]
 [connection signal="jump" from="EnemyController" to="JumpComponent" method="Jump"]
+[connection signal="area_entered" from="HitThePlayer" to="EnemyController" method="DamagePlayer"]

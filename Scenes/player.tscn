@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://1ejl0k88s3yi"]
+[gd_scene load_steps=11 format=3 uid="uid://1ejl0k88s3yi"]
 
 [ext_resource type="PackedScene" uid="uid://chldgtiftv7o3" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="3_rpjv3"]
 [ext_resource type="PackedScene" uid="uid://rdajq45ts5p2" path="res://Scenes/InheritanceJail/Components/sprites_component.tscn" id="4_0mcb7"]
 [ext_resource type="Script" path="res://Scenes/weapons/scripts/player_weapons.gd" id="5_0fxkh"]
 [ext_resource type="PackedScene" uid="uid://du8l523rmcsbd" path="res://Scenes/weapons/balls.tscn" id="5_2h461"]
+[ext_resource type="PackedScene" uid="uid://d0f8nxi6mbuhy" path="res://Scenes/InheritanceJail/Components/hurtbox.tscn" id="5_rw85s"]
 [ext_resource type="PackedScene" uid="uid://bfk6fuljfk6dq" path="res://Scenes/InheritanceJail/Controllers/player_controller.tscn" id="5_vaqn0"]
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="6_rnyw7"]
+[ext_resource type="PackedScene" uid="uid://ctsxioah6jgrc" path="res://Scenes/weapons/sword.tscn" id="8_u6efo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eedgu"]
 radius = 8.0
@@ -37,23 +39,24 @@ jump_velocity = -600.0
 [node name="SpritesComponent" parent="." instance=ExtResource("4_0mcb7")]
 animation = &"Idle"
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-input_pickable = false
-monitoring = false
+[node name="Hurtbox" parent="." instance=ExtResource("5_rw85s")]
+iframes = 0.5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_t3w31")
 
 [node name="Weapons" type="Node2D" parent="."]
+position = Vector2(0, -12)
 script = ExtResource("5_0fxkh")
 
 [node name="Balls" parent="Weapons" instance=ExtResource("5_2h461")]
 
+[node name="Sword" parent="Weapons" instance=ExtResource("8_u6efo")]
+
 [connection signal="change_direction" from="PlayerController" to="Motion2D" method="ChangeHorizontalDirection"]
 [connection signal="change_direction" from="PlayerController" to="SpritesComponent" method="ChangeDirection"]
+[connection signal="change_direction" from="PlayerController" to="Weapons/Sword" method="ChangeDirection"]
 [connection signal="fallthrough" from="PlayerController" to="Motion2D" method="Fallthrough"]
 [connection signal="jump" from="PlayerController" to="JumpComponent" method="Jump"]
 [connection signal="set_animation" from="Motion2D" to="SpritesComponent" method="SetAnimation"]

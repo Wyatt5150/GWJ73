@@ -196,10 +196,11 @@ tile_set = ExtResource("1_easq5")
 
 [node name="WeaponPickup" parent="." instance=ExtResource("10_p55up")]
 position = Vector2(688, 576)
-pick_random = true
+type = 2
 
 [node name="WeaponPickup2" parent="." instance=ExtResource("10_p55up")]
 position = Vector2(1104, 576)
+type = 2
 pick_random = true
 cost_override = 10
 

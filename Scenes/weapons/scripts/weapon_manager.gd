@@ -15,6 +15,7 @@ class Weapon:
 	var sprite_path : String
 	var level : int = 0
 	var active : bool = false
+	signal upgraded(level)
 	
 	func _init(_path : String, sprite : String = base_sprite_path) -> void:
 		self.path = base_path + _path
@@ -27,6 +28,7 @@ class Weapon:
 	func Upgrade() -> void:
 		level += 1
 		active = true
+		upgraded.emit(level)
 	
 	func Spawn() -> Node2D:
 		var entity = load(path)
@@ -44,15 +46,15 @@ var WEAPON_DATA : Dictionary = {
 		"res://Assets/Sycthe.png"
 	),
 	WEAPONS.SWORD : Weapon.new(
-		".tscn",
+		"sword.tscn",
 		"res://NotMine/swrod.png"
 	),
 	WEAPONS.BALL :Weapon.new(
-		".tscn",
+		"balls.tscn",
 		"res://NotMine/electricBall.png"
 	),
 	WEAPONS.CLONE : Weapon.new(
-		".tscn",
+		"clone.tscn",
 		"res://NotMine/CloneIcon.png"
 	),
 	WEAPONS.HOMING : Weapon.new(
