@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1ejl0k88s3yi"]
+[gd_scene load_steps=13 format=3 uid="uid://1ejl0k88s3yi"]
 
 [ext_resource type="PackedScene" uid="uid://chldgtiftv7o3" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="3_rpjv3"]
 [ext_resource type="PackedScene" uid="uid://rdajq45ts5p2" path="res://Scenes/InheritanceJail/Components/sprites_component.tscn" id="4_0mcb7"]
@@ -9,23 +9,23 @@
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="6_rnyw7"]
 [ext_resource type="PackedScene" uid="uid://ctsxioah6jgrc" path="res://Scenes/weapons/sword.tscn" id="8_u6efo"]
 [ext_resource type="PackedScene" uid="uid://cjp1dr4wt6prc" path="res://Scenes/weapons/clone_spawner.tscn" id="9_b2ro2"]
+[ext_resource type="PackedScene" uid="uid://dl7pxr2rsj7aj" path="res://Scenes/weapons/scythe.tscn" id="10_s0yeu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eedgu"]
-radius = 8.0
-height = 24.0
+radius = 16.0
+height = 64.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3w31"]
-size = Vector2(16, 28)
+size = Vector2(32, 64)
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 3
 floor_stop_on_slope = false
 floor_block_on_wall = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -32)
 shape = SubResource("CapsuleShape2D_eedgu")
 
 [node name="PlayerController" parent="." instance=ExtResource("5_vaqn0")]
@@ -38,13 +38,15 @@ number_of_jumps = 2
 jump_velocity = -600.0
 
 [node name="SpritesComponent" parent="." instance=ExtResource("4_0mcb7")]
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(2, 2)
 animation = &"Idle"
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_rw85s")]
 iframes = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -14)
+position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_t3w31")
 
 [node name="Weapons" type="Node2D" parent="."]
@@ -56,6 +58,9 @@ script = ExtResource("5_0fxkh")
 [node name="Sword" parent="Weapons" instance=ExtResource("8_u6efo")]
 
 [node name="Clone" parent="Weapons" instance=ExtResource("9_b2ro2")]
+
+[node name="Scythe" parent="Weapons" instance=ExtResource("10_s0yeu")]
+position = Vector2(0, -68)
 
 [connection signal="change_direction" from="PlayerController" to="Motion2D" method="ChangeHorizontalDirection"]
 [connection signal="change_direction" from="PlayerController" to="SpritesComponent" method="ChangeDirection"]

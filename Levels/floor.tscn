@@ -85,19 +85,19 @@ pick_random = true
 
 [node name="WeaponPickup3" parent="Pickups" instance=ExtResource("7_u7dic")]
 position = Vector2(96, 800)
-pick_random = true
+type = 2
 
 [node name="WeaponPickup4" parent="Pickups" instance=ExtResource("7_u7dic")]
 position = Vector2(-648, 384)
-pick_random = true
+type = 2
 
 [node name="WeaponPickup5" parent="Pickups" instance=ExtResource("7_u7dic")]
 position = Vector2(-1840, 736)
-pick_random = true
+type = 2
 
 [node name="WeaponPickup6" parent="Pickups" instance=ExtResource("7_u7dic")]
 position = Vector2(-1856, 256)
-pick_random = true
+type = 2
 
 [node name="Enemies" type="Node2D" parent="."]
 

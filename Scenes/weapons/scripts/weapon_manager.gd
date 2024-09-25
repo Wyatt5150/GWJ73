@@ -5,7 +5,7 @@ enum WEAPONS {
 	SWORD,
 	BALL,
 	CLONE,
-	HOMING
+	#HOMING
 }
 
 class Weapon:
@@ -57,10 +57,10 @@ var WEAPON_DATA : Dictionary = {
 		"clone.tscn",
 		"res://NotMine/CloneIcon.png"
 	),
-	WEAPONS.HOMING : Weapon.new(
-		".tscn",
-		"res://NotMine/HomingBase.png"
-	)
+	#WEAPONS.HOMING : Weapon.new(
+		#".tscn",
+		#"res://NotMine/HomingBase.png"
+	#)
 }
 
 func Reset_Weapon_Data() -> void:

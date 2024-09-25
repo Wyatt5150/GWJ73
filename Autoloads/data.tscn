@@ -147,6 +147,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_lds06")
+volume = 0
 
 [node name="Label" type="Label" parent="UI/Control/Settings/SettingsBox/VBox/Master"]
 layout_mode = 0

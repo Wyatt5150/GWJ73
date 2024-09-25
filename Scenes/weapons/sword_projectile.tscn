@@ -9,6 +9,7 @@ size = Vector2(32, 16)
 [node name="Sword_projectile" type="Area2D"]
 monitorable = false
 script = ExtResource("1_v3b7s")
+damage = 3
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cchwhycp784mj"]
+
+[ext_resource type="Script" path="res://Scenes/weapons/scripts/scythe_projectile.gd" id="1_158n4"]
+[ext_resource type="Texture2D" uid="uid://m4hw343fk01" path="res://Assets/Sycthe.png" id="2_olnyp"]
+[ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="3_el0rc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwvej"]
+radius = 32.0
+
+[node name="Scythe_Projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+script = ExtResource("1_158n4")
+damage = 10
+lifespan = 5.0
+pierce = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nwvej")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(2, 2)
+texture = ExtResource("2_olnyp")
+
+[node name="TargetingComponent" parent="." instance=ExtResource("3_el0rc")]
+unique_name_in_owner = true
+target_type = Array[int]([4])
+radius = 4

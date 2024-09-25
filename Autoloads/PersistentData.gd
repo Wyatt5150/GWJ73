@@ -36,6 +36,7 @@ enum STATE {
 
 var SPAWNCAP = 50
 
+@export var portal_time : float = 60.0
 
 var current_floor = 0 :
 	set(new_val):
@@ -46,7 +47,7 @@ var souls : int = 0 :
 	set(new_val): 
 		%SoulCount.text = "Souls: " + str(new_val)
 		souls = new_val
-var starting_souls : int = 10
+var starting_souls : int = 9999
 
 var death_cost : int = 1
 var deaths : int = 0 :
@@ -54,8 +55,10 @@ var deaths : int = 0 :
 		death_cost = 2 ** new_val
 		deaths = new_val
 
+signal clear_projectiles
+
 var timing = false
-var portal_timer : float = 50.0 :
+var portal_timer : float = 60.0 :
 	set(new_val):
 		if current_floor == 0:
 			%PortalTimer.text = "Portal Opens In: - -"
@@ -71,8 +74,7 @@ var portal_timer : float = 50.0 :
 			%PortalTimer.text = "Portal Is Open"
 			portal_timer = 0.0
 			return
-			
-		
+
 
 func _ready() -> void:
 	current_floor = 0
@@ -93,8 +95,8 @@ func Transition(state : STATE = STATE.WIN):
 	
 	get_tree().call_deferred("change_scene_to_packed", transition)
 
-
 func StartLevel():
+	clear_projectiles.emit()
 	timing = true
 	Audio.ChangeMusic(Audio.MUSIC_TRACKS.CLOCK_TOWER)
 	if current_floor == 0:
@@ -103,6 +105,6 @@ func StartLevel():
 		deaths = 0
 		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.MAIN_MENU])
 	else:
-		portal_timer = 60.0
+		portal_timer = portal_time
 		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.FLOOR])
 	
