@@ -19,9 +19,9 @@ func _physics_process(delta: float) -> void:
 		self.position += speed * direction * delta
 
 func Fire():
-	var target = %TargetingComponent.FindTarget()
+	var target = %TargetingComponent.GetRandomTarget()
 	while not is_instance_valid(target):
-		target = %TargetingComponent.FindTarget()
+		target = %TargetingComponent.GetRandomTarget()
 		await get_tree().create_timer(0.5).timeout
 	
 	direction = self.global_position.direction_to(target.global_position)

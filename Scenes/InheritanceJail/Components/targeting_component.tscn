@@ -13,3 +13,6 @@ script = ExtResource("1_4vexg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rb5nk")
+
+[connection signal="area_entered" from="." to="." method="_TargetEntered"]
+[connection signal="area_exited" from="." to="." method="_TargetExited"]

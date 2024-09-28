@@ -30,7 +30,7 @@ texture = ExtResource("1_dqapv")
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_7ktmt")
 
-[node name="EnemyController" parent="." node_paths=PackedStringArray("targeting_node") instance=ExtResource("3_5kfx3")]
+[node name="EnemyController" parent="." node_paths=PackedStringArray("targeting_node") groups=["Enemy"] instance=ExtResource("3_5kfx3")]
 targeting_node = NodePath("TargetingComponent")
 
 [node name="TargetingComponent" parent="EnemyController" instance=ExtResource("4_oo7oj")]

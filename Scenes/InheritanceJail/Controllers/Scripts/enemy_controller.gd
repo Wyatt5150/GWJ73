@@ -11,7 +11,7 @@ class_name EnemyController
 @export var damage = 1
 
 var tracking_update_stutter : float = randf_range(0.0, 0.20)
-var tracking : Node2D
+var tracking : Area2D
 var target : Vector2
 
 func ready():
@@ -42,14 +42,14 @@ func _physics_process(_delta: float) -> void:
 
 func UpdateTrackingPosition():
 	if !is_instance_valid(tracking):
-		tracking = targeting_node.FindTarget()
+		tracking = targeting_node.GetRandomTarget()
 		if !is_instance_valid(tracking):
 			target = parent.global_position - Vector2(0, 50)
 			return
 	
 	target = tracking.global_position
 	target.x += randf_range(-stutter, stutter)
-	
+
 func DamagePlayer(area):
 	if area is HurtboxComponent:
 		area.Damage(damage)
