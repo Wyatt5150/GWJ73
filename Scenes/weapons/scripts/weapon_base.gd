@@ -18,7 +18,7 @@ func _ready():
 	Upgrade(weapon_data.level)
 	_Fire()
 
-func Upgrade(level : int):
+func Upgrade(_level : int):
 	printerr("No Upgrade method implemented for ", self.get_class())
 
 func _Fire():

@@ -30,13 +30,13 @@ func ready():
 func _ready():
 	self.collision_layer = 0
 	self.collision_mask = 0
-	self.set_collision_mask_value(Data.LAYERS_MAP[target], true)
+	self.set_collision_mask_value(target, true)
 	self.area_entered.connect(Callable(self, "_Activate"))
 	self.area_exited.connect(Callable(self, "_Deactivate"))
 	
 	var shape = get_node_or_null("CollisionShape2D")
 	if shape == null:
-		printerr(self, " Has no collission shape. Freeeeing.")
+		printerr(self, " Has no collission shape. Freeing.")
 		self.queue_free()
 		
 	if active: _Activate()

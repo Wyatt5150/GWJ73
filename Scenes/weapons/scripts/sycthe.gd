@@ -15,8 +15,7 @@ func Fire():
 	if weapon_data.level == 0:
 		return
 	
-	var _projectile : Projectile = projectile.instantiate()
-	_projectile._SetLayers(target_type)
+	var _projectile : Bullet = projectile.instantiate()
+	#_projectile._SetLayers(target_type)
 	self.add_child(_projectile)
 	_projectile.reparent(get_tree().root, true)
-	_projectile._Fire()

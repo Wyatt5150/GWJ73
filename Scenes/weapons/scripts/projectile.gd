@@ -20,7 +20,7 @@ func _SetLayers(targets) -> void:
 	self.collision_layer = 0
 	self.collision_mask = 0
 	for target in targets:
-		self.set_collision_mask_value(Data.LAYERS_MAP[target], true)
+		self.set_collision_mask_value(target, true)
 
 func _Fire() -> void:
 	active = true
@@ -37,5 +37,5 @@ func Hit(_area : Area2D):
 		if times_hit > pierce:
 			self.queue_free()
 	
-	if _area is HurtboxComponent:
+	if _area is Hurtbox:
 		_area.Damage(damage)

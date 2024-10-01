@@ -26,6 +26,11 @@ Audio="*res://Autoloads/audio.tscn"
 Data="*res://Autoloads/data.tscn"
 WeaponData="*res://Autoloads/weapon_manager.tscn"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+gdscript/warnings/narrowing_conversion=0
+
 [display]
 
 window/size/viewport_width=1080

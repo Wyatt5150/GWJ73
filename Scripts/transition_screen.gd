@@ -36,7 +36,7 @@ func _ready() -> void:
 		fact = fact_list.pick_random()
 	%FactText.text = fact
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if can_continue:
 		Data.StartLevel()
 

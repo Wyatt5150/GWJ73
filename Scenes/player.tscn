@@ -19,7 +19,7 @@ height = 64.0
 size = Vector2(32, 64)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 3
 floor_stop_on_slope = false
 floor_block_on_wall = false
@@ -43,6 +43,7 @@ scale = Vector2(2, 2)
 animation = &"Idle"
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_rw85s")]
+type = 3
 iframes = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]

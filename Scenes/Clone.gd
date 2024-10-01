@@ -17,6 +17,6 @@ func Fire():
 	ball.global_position = self.global_position
 
 func Hit(_area : Area2D):
-	if _area is HurtboxComponent:
+	if _area is Hurtbox:
 		_area.Damage(damage)
 	

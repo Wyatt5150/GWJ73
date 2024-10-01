@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b306suhhvx008"]
+
+[ext_resource type="Script" path="res://Experimental/scythe_v_2.gd" id="1_xdl6e"]
+[ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="2_1s6xk"]
+[ext_resource type="Texture2D" uid="uid://m4hw343fk01" path="res://Assets/Sycthe.png" id="3_34vyt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jhf0j"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_10tnj"]
+radius = 32.0
+
+[node name="ScytheV2" type="CharacterBody2D" node_paths=PackedStringArray("targeter", "hitbox")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_xdl6e")
+targeter = NodePath("TargetingComponent")
+initial_speed = 300.0
+target_speed = 300.0
+damage = 5.0
+lifespan = 5.0
+pierce = 5
+hitbox = NodePath("Hitbox")
+
+[node name="TargetingComponent" parent="." instance=ExtResource("2_1s6xk")]
+detecting_type = Array[int]([5])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jhf0j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.43051e-06, -1.43051e-06)
+scale = Vector2(2, 2)
+texture = ExtResource("3_34vyt")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_10tnj")

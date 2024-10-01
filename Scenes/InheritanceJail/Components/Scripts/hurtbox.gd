@@ -1,5 +1,5 @@
 extends Area2D
-class_name HurtboxComponent
+class_name Hurtbox
 
 """META OPTIONS"""
 @onready var parent = get_parent()
@@ -25,16 +25,7 @@ var invincibility = 0.0
 func _ready() -> void:
 	current_health = max_health
 	
-	self.collision_layer = 0
-	self.collision_mask = 0
-	self.set_collision_layer_value(Data.LAYERS_MAP[type], true)
-	self.area_entered.connect(Callable(self, "_Activate"))
-	self.area_exited.connect(Callable(self, "_Deactivate"))
-	
-	var shape = get_node_or_null("CollisionShape2D")
-	if shape == null:
-		printerr(self, " Has no collission shape. Freeeeing.")
-		self.queue_free()
+	Data._set_layers(self, [type])
 
 func _process(delta: float) -> void:
 	invincibility -= delta

@@ -2,19 +2,10 @@ extends Node
 class_name Data_Handler
 
 enum LAYERS {
-	IMPASSABLE,
-	FALLTHROUGH,
-	PLAYER,
-	TOWER,
-	ENEMY
-}
-
-const LAYERS_MAP : Dictionary = {
-	LAYERS.IMPASSABLE : 1,
-	LAYERS.FALLTHROUGH : 2,
-	LAYERS.PLAYER : 3,
-	LAYERS.TOWER : 4,
-	LAYERS.ENEMY : 5
+	IMPASSABLE = 1,
+	FALLTHROUGH = 2,
+	PLAYER = 3,
+	ENEMY = 5
 }
 
 enum SCENES {
@@ -108,3 +99,12 @@ func StartLevel():
 		portal_timer = portal_time
 		get_tree().call_deferred("change_scene_to_file", SCENES_PATH[SCENES.FLOOR])
 	
+func _set_layers(node : CollisionObject2D, layers):
+	node.set_collision_layer(0)
+	for layer in layers:
+		node.set_collision_layer_value(layer, true)
+
+func _set_masks(node : CollisionObject2D, layers):
+	node.set_collision_mask(0)
+	for layer in layers:
+		node.set_collision_mask_value(layer, true)

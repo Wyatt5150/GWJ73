@@ -5,17 +5,11 @@ var targets : Array[Area2D] = [
 	
 ]
 
-@export var detecting_type : Array[Data.LAYERS] = [] :
-	set(new_val):
-		self.set_collision_mask(0)
-		for type in new_val:
-			set_collision_mask_value(Data.LAYERS_MAP[type], true)
-		detecting_type = new_val
-		_PulseTargets()
+@export var detecting_type : Array[Data.LAYERS] = []
 @export var radius : int = 5
 
 func _ready() -> void:
-	self.set_collision_layer(0)
+	Data._set_masks(self, detecting_type)
 	_PulseTargets()
 	scale *= radius
 

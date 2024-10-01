@@ -38,7 +38,7 @@ func ChangeHorizontalDirection(_direction : float) -> void:
 	horizontal_direction = _direction
 
 func Fallthrough(disable : bool) -> void:
-	parent.set_collision_mask_value(Data.LAYERS_MAP[Data.LAYERS.FALLTHROUGH], disable)
+	parent.set_collision_mask_value(Data.LAYERS.FALLTHROUGH, disable)
 
 """PRIVATE FUNCTIONS AND PROCESS LOOP"""
 func _ready():

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dl7pxr2rsj7aj"]
 
 [ext_resource type="Script" path="res://Scenes/weapons/scripts/sycthe.gd" id="1_55b2c"]
-[ext_resource type="PackedScene" uid="uid://cchwhycp784mj" path="res://Scenes/weapons/scythe_projectile.tscn" id="2_kwkda"]
+[ext_resource type="PackedScene" uid="uid://b306suhhvx008" path="res://Experimental/scythe_v_2.tscn" id="2_mq0m5"]
 
 [node name="Scythe" type="Node2D"]
 script = ExtResource("1_55b2c")
 base_fire_interval = 3.0
-projectile = ExtResource("2_kwkda")
+projectile = ExtResource("2_mq0m5")

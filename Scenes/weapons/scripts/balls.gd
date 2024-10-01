@@ -29,6 +29,8 @@ func GenerateBalls(total : int) -> Array:
 		var num_in_tier : int = total % merge_threshold
 		for i in range(0, num_in_tier):
 			balls.append(tier)
+		
+		@warning_ignore("integer_division")
 		total = int(total / merge_threshold)
 		tier += 1
 	
