@@ -1,9 +1,11 @@
 extends Node2D
 class_name BaseController
 
-@export var parent_override : Node2D
+@export var parent_override : Node2D :
+	set(new_val):
+		parent = new_val
 
-@onready var parent : Node2D :
+@onready var parent : Node2D = self.get_parent():
 	set(new_val):
 		if !is_instance_valid(new_val):
 			if self.get_parent() is not Node2D:
@@ -23,7 +25,7 @@ signal change_direction(direction : float)
 signal jump()
 
 func _ready():
-	parent = parent_override
+	#parent = parent_override
 	ready()
 
 func ready():

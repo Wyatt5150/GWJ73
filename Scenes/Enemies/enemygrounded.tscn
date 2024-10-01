@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bcws23ud5u66w" path="res://icon.svg" id="1_dqapv"]
 [ext_resource type="PackedScene" uid="uid://divbc678so3o4" path="res://Scenes/InheritanceJail/Controllers/enemy_controller.tscn" id="3_5kfx3"]
-[ext_resource type="PackedScene" uid="uid://bjnvr4cb8wx41" path="res://Scenes/InheritanceJail/Components/targeting_component.tscn" id="4_oo7oj"]
 [ext_resource type="PackedScene" uid="uid://chldgtiftv7o3" path="res://Scenes/InheritanceJail/Components/jump_component.tscn" id="5_djug6"]
 [ext_resource type="PackedScene" uid="uid://d0f8nxi6mbuhy" path="res://Scenes/InheritanceJail/Components/hurtbox.tscn" id="6_t2q6f"]
+[ext_resource type="Script" path="res://Scenes/weapons/scripts/projectile.gd" id="7_e67ut"]
 [ext_resource type="PackedScene" uid="uid://bto76kyrksdg3" path="res://Scenes/InheritanceJail/Components/motion_2d.tscn" id="8_vgwlq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ktmt"]
@@ -30,10 +30,7 @@ texture = ExtResource("1_dqapv")
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_7ktmt")
 
-[node name="EnemyController" parent="." node_paths=PackedStringArray("targeting_node") groups=["Enemy"] instance=ExtResource("3_5kfx3")]
-targeting_node = NodePath("TargetingComponent")
-
-[node name="TargetingComponent" parent="EnemyController" instance=ExtResource("4_oo7oj")]
+[node name="EnemyController" parent="." groups=["Enemy"] instance=ExtResource("3_5kfx3")]
 
 [node name="Motion2D" parent="." instance=ExtResource("8_vgwlq")]
 speed = 100.0
@@ -56,6 +53,7 @@ shape = SubResource("RectangleShape2D_q5hxx")
 collision_layer = 0
 collision_mask = 4
 monitorable = false
+script = ExtResource("7_e67ut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitThePlayer"]
 position = Vector2(0, -16)
@@ -64,4 +62,3 @@ shape = SubResource("RectangleShape2D_7nfxb")
 [connection signal="change_direction" from="EnemyController" to="Motion2D" method="ChangeHorizontalDirection"]
 [connection signal="fallthrough" from="EnemyController" to="Motion2D" method="Fallthrough"]
 [connection signal="jump" from="EnemyController" to="JumpComponent" method="Jump"]
-[connection signal="area_entered" from="HitThePlayer" to="EnemyController" method="DamagePlayer"]

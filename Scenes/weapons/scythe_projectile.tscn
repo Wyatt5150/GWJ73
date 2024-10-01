@@ -12,7 +12,7 @@ collision_layer = 0
 collision_mask = 16
 monitorable = false
 script = ExtResource("1_158n4")
-damage = 10
+damage = 6
 lifespan = 5.0
 pierce = 3
 
@@ -26,5 +26,4 @@ texture = ExtResource("2_olnyp")
 
 [node name="TargetingComponent" parent="." instance=ExtResource("3_el0rc")]
 unique_name_in_owner = true
-target_type = Array[int]([4])
-radius = 4
+detecting_type = Array[int]([4])

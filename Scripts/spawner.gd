@@ -4,10 +4,9 @@ class_name BaseSpawner
 @export var spawns : Array[PackedScene]
 @export var targeter : TargetingComponent
 @export var ignore_spawn_cap : bool = false
-@export var spawning : bool = false :
+@export var active : bool = true :
 	set(new_val):
-		spawning = new_val
-		_SpawnLoop()
+		active = new_val
 
 @export var ignore_player : bool = false
 
@@ -20,15 +19,14 @@ func _ready() -> void:
 	_SpawnLoop()
 
 func _SpawnLoop() -> void:
-	if not CanSpawn():
-		return
+	if CanSpawn():
+		Spawn()
 	
-	Spawn()
 	await get_tree().create_timer(spawn_time).timeout
 	_SpawnLoop()
 
 func CanSpawn() -> bool:
-	if not spawning:
+	if not active:
 		return false
 	
 	if not ignore_spawn_cap and spawncap <= get_tree().get_node_count_in_group("Enemy"):

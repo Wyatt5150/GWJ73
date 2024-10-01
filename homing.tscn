@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bh7j3bexg4oel"]
+
+[node name="Homing" type="CharacterBody2D"]

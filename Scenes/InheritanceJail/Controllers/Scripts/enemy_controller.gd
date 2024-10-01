@@ -1,7 +1,6 @@
 extends BaseController
 class_name EnemyController
 
-@export var targeting_node : TargetingComponent
 @export var tracking_update_interval : float = 0.5
 @export var stutter : float = 50.0
 
@@ -11,7 +10,7 @@ class_name EnemyController
 @export var damage = 1
 
 var tracking_update_stutter : float = randf_range(0.0, 0.20)
-var tracking : Area2D
+var tracking : Node2D
 var target : Vector2
 
 func ready():
@@ -42,14 +41,10 @@ func _physics_process(_delta: float) -> void:
 
 func UpdateTrackingPosition():
 	if !is_instance_valid(tracking):
-		tracking = targeting_node.GetRandomTarget()
+		tracking = get_tree().get_nodes_in_group("Player").pick_random()
 		if !is_instance_valid(tracking):
 			target = parent.global_position - Vector2(0, 50)
 			return
 	
 	target = tracking.global_position
 	target.x += randf_range(-stutter, stutter)
-
-func DamagePlayer(area):
-	if area is HurtboxComponent:
-		area.Damage(damage)

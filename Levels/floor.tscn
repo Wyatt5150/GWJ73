@@ -104,33 +104,27 @@ type = 2
 [node name="Spawner" parent="Enemies" instance=ExtResource("10_3gmlg")]
 position = Vector2(240, 24)
 spawns = Array[PackedScene]([ExtResource("11_b4hsf")])
-spawning = true
 
 [node name="Spawner2" parent="Enemies" instance=ExtResource("10_3gmlg")]
 position = Vector2(1976, 176)
 spawns = Array[PackedScene]([ExtResource("11_b4hsf")])
-spawning = true
 
 [node name="Spawner3" parent="Enemies" instance=ExtResource("10_3gmlg")]
 position = Vector2(1120, 656)
 spawns = Array[PackedScene]([ExtResource("11_b4hsf")])
-spawning = true
 
 [node name="Spawner4" parent="Enemies" instance=ExtResource("10_3gmlg")]
 position = Vector2(-1160, 184)
 spawns = Array[PackedScene]([ExtResource("11_b4hsf")])
-spawning = true
 
 [node name="Spawner5" parent="Enemies" instance=ExtResource("10_3gmlg")]
 position = Vector2(-584, 752)
 spawns = Array[PackedScene]([ExtResource("11_b4hsf")])
-spawning = true
 
 [node name="BigGuySpawner" parent="Enemies" instance=ExtResource("10_3gmlg")]
 position = Vector2(616, 160)
 spawns = Array[PackedScene]([ExtResource("10_msnbv")])
 ignore_spawn_cap = true
-spawning = true
 spawn_time = 20.0
 
 [node name="Player" parent="." instance=ExtResource("6_v3qt6")]

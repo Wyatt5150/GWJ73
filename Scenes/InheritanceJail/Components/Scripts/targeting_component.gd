@@ -5,7 +5,7 @@ var targets : Array[Area2D] = [
 	
 ]
 
-@export var detecting_type : Array[Data.LAYERS] = [Data.LAYERS.PLAYER] :
+@export var detecting_type : Array[Data.LAYERS] = [] :
 	set(new_val):
 		self.set_collision_mask(0)
 		for type in new_val:

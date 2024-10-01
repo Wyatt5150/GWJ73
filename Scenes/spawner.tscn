@@ -8,4 +8,5 @@ script = ExtResource("1_78d48")
 targeter = NodePath("TargetingComponent")
 
 [node name="TargetingComponent" parent="." instance=ExtResource("3_xh5j1")]
+detecting_type = Array[int]([2])
 radius = 6
